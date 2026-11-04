@@ -1,4 +1,4 @@
-# In-Context Learning Without Copying
+# In-Context Learning Beyond Copying
 
 ### Environment Setup
 ```bash
