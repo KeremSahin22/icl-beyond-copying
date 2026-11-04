@@ -1,0 +1,13 @@
+__pycache__/
+.ipynb_checkpoints/
+wandb/
+trained_models/
+SELF_NOTES.MD
+data
+models
+thrash/
+samples_cache/
+
+*.out
+*.err
+*.log

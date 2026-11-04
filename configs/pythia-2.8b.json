@@ -1,0 +1,132 @@
+{
+    "pipe-parallel-size": 1,
+    "model-parallel-size": 1,
+    "num-layers": 32,
+    "hidden_size": 2560,
+    "num-attention-heads": 32,
+    "seq-length": 2048,
+    "max-position-embeddings": 2048,
+    "pos-emb": "rotary",
+    "rotary-pct": 0.25,
+    "gpt-j-residual": true,
+    "output-layer-parallelism": "column",
+    "attention-config": [
+        [
+            [
+                "flash"
+            ],
+            32
+        ]
+    ],
+    "scaled-upper-triang-masked-softmax-fusion": true,
+    "bias-gelu-fusion": true,
+    "init_method": "small_init",
+    "output_layer_init_method": "wang_init",
+    "optimizer": {
+        "type": "Adam",
+        "params": {
+            "lr": 0.00016,
+            "betas": [
+                0.9,
+                0.95
+            ],
+            "eps": 1.0e-8
+        }
+    },
+    "min_lr": 0.000016,
+    "data-impl": "mmap",
+    "num_workers": 1,
+    "prefetch_factor": 4,
+    "checkpoint-activations": true,
+    "checkpoint-num-layers": 1,
+    "partition-activations": true,
+    "synchronize-each-layer": true,
+    "gradient_clipping": 1.0,
+    "weight-decay": 0.1,
+    "hidden-dropout": 0,
+    "attention-dropout": 0,
+    "steps_per_print": 10,
+    "wall_clock_breakdown": true,
+    "train-data-paths": [
+        "data/huggingface_dedupped/document"
+    ],
+    "valid-data-paths": [
+        "data/huggingface_dedupped/document"
+    ],
+    "test-data-paths": [
+        "data/huggingface_dedupped/"
+    ],
+    "tokenizer-type": "HFTokenizer",
+    "vocab-file": "/fsx/pile/20B_tokenizer.json",
+    "launcher": "slurm",
+    "deepspeed_slurm": true,
+    "checkpoint-factor": 100,
+    "shuffle": false,
+    "train-iters": 143000,
+    "lr-decay-iters": 143000,
+    "lr-decay-style": "cosine",
+    "eval-interval": 40000,
+    "gas": 32,
+    "eval-iters": 10,
+    "log-interval": 10,
+    "fp16_lm_cross_entropy": false,
+    "calculate_loss_in_fp32": true,
+    "eod_mask_loss": false,
+    "train_micro_batch_size_per_gpu": 8,
+    "gradient_checkpointing": false,
+    "warmup": 0.01,
+    "_attn_implementation": "flash_attention_2",
+    "hidden-act": "gelu",
+    "use_parallel_residual": true,
+    "torch_dtype": "float16",
+    "layer-norm-eps": 1e-05,
+    "architectures": [
+        "GPTNeoXForCausalLM"
+    ],
+    "bos_token_id": 0,
+    "eos_token_id": 0,
+    "initializer-range": 0.02,
+    "model_type": "gpt_neox",
+    "rotary-emb-base": 10000,
+    "tie_word_embeddings": false,
+    "use_cache": true,
+    "vocab_size": 50304,
+    "use_single_file": true,
+    "train_valid_split": 0.95,
+    "reinitialize_heads": false,
+    "reinitialize_optim_for_heads": false,
+    "reinitialize_threshold": 0.3,
+    "negate_bigram_loss": false,
+    "negate_bigram_loss_weight": 0.0125,
+    "mask_previous_token_position": false,
+    "mask_bigram_loss": false,
+    "mask_unigram_loss": false,
+    "use_equivalence_bigram_masking": false,
+    "mask_bigram_loss_with_self_included": false,
+    "mask_bigram_position": false,
+    "mask_bigram_position_with_self_included": false,
+    "use_induction_loss": false,
+    "attention_pattern_based_induction_loss": false,
+    "induction_loss_weight": 2,
+    "induction_loss_seq_len": 50,
+    "zero_optimization": {
+        "stage": 1,
+        "allgather_partitions": true,
+        "allgather_bucket_size": 150000000,
+        "overlap_comm": true,
+        "reduce_scatter": true,
+        "reduce_bucket_size": 150000000,
+        "contiguous_gradients": true,
+        "cpu-offload": false
+    },
+    "fp16": {
+        "fp16": true,
+        "enabled": true,
+        "loss_scale": 0,
+        "loss_scale_window": 1000,
+        "initial_scale_power": 12,
+        "hysteresis": 2,
+        "min_loss_scale": 1
+    },
+    "use_scaled_init_for_output_weights": true
+}
